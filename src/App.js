@@ -1,12 +1,10 @@
 import './App.css';
-import data from './data/albumData.js'
-import Song from './components/Songs'
+import Playlist from "./components/Playlist";
+
 function App() {
   return (
     <div className="App">
-      <div className="playlist">
-        <Song />
-      </div>
+      <Playlist />
     </div>
   );
 }

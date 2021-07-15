@@ -1,13 +1,14 @@
 import React from 'react'
-import data from '../../data/albumData'
 
-function Song() {
+function Song(props) {
     return (
-        <div>
-            <img src={data.album.images[0].url} alt="album"/>
-            <p className="song-title">{data.name}</p>
-            <p className="song-artist">{data.artists[0].name}</p>
-            <p className="song-album">{data.album.name}</p>
+        <div className="songs-wrapper">
+            <div className="img-song">
+                <img src={props.img} alt={props.alt}/>
+            </div>
+            <p className="song-title">{props.title}</p>
+            <p className="song-artist">{props.artist}</p>
+            <p className="song-album">{props.album}</p>
         </div>
     )
 }
