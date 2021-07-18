@@ -12,5 +12,12 @@ function Song(props) {
         </div>
     )
 }
+Song.defaultProps ={
+    img : "-",
+    alt : "-",
+    title : "Title",
+    artist : "Artist",
+    album : "Album"
+}
 
 export default Song
