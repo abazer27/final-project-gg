@@ -21,14 +21,20 @@ const Playlist =() =>{
             headers: {Authorization : 'Bearer ' + token,
         },  
         })
-            .then((res) =>res.json())
-            .then((seacrhSong)=> setSearchSong(seacrhSong.track.item))
+            .then(res =>res.data)
+            .then((resData)=> setSearchSong(resData.tracks.items))
+            .catch((err)=> console.log(err));
 
     };
-
-        return  <>  <input type="text" value={song} onChange={handleSong} placeholder="Search Song ..."></input>
+console.log(seacrhSong)
+        return  <>  
+                    <input type="text" value={song} onChange={handleSong} placeholder="Search Song ..."></input>
                     <button onClick={handleGetSearchSong}> S E A R C H </button>
-                    <div>
+                    <div>{seacrhSong.map((tracks,index)=>{
+                        return(
+                            <img key={index} src={tracks.album.images[1].url}></img>
+                        )
+                    })}
 
                     </div>
                 </>
