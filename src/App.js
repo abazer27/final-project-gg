@@ -1,14 +1,15 @@
-import './App.css';
-import Playlist from "./components/Playlist";
-import Header from './components/Header'
-import Button from './components/Button'
+// import Playlist from "./components/Playlist";
+// import Header from './components/Header'
+// import Button from './components/Button'
+import WebApp from "./pages/spotify/WebApp";
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      {/* <Header />
       <Playlist />
-      <Button />
+      <Button /> */}
+      <WebApp />
     </div>
   );
 }
