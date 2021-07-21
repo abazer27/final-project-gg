@@ -27,17 +27,22 @@ const Playlist =() =>{
 
     };
 console.log(seacrhSong)
-        return  <>  
+        return  <div>  
                     <input type="text" value={song} onChange={handleSong} placeholder="Search Song ..."></input>
                     <button onClick={handleGetSearchSong}> S E A R C H </button>
                     <div>{seacrhSong.map((tracks,index)=>{
                         return(
-                            <img key={index} src={tracks.album.images[1].url}></img>
+                            <div >
+                                <img key={index} src={tracks.album.images[1].url}></img>
+                                <p>{tracks.artists[0].name}</p>
+                                <p>{tracks.album.name}</p>
+                                <button>S E L E C T</button>
+                            </div>
                         )
                     })}
 
                     </div>
-                </>
+                </div>
         
 
 
