@@ -1,9 +1,9 @@
 import React from 'react'
 import "./WebApp.css";
 import { useEffect } from 'react';
-import Playlist from './components/Playlist';
+import Contents from './components/Content';
 
-// GET https://accounts.spotify.com/authorize?client_id=5fe01282e44241328a84e7c5cc169165&response_type=code&redirect_uri=https%3A%2F%2Fexample.com%2Fcallback&scope=user-read-private%20user-read-email&state=34fFs29kd09
+// GET https://accounts.spotify.com/authorize?client_id=5fe01282e44241328a84e7c5cc169165&response_type=token&redirect_uri=https%3A%2F%2Fexample.com%2Fcallback&scope=user-read-private%20user-read-email&state=34fFs29kd09
 
 
 const CLIENT_ID = "e1a4d0707608419f85aa0615e91585c7";
@@ -30,6 +30,7 @@ const getReturnedParamsFromSpotifyAuth = (hash) =>{
 };
 
 function WebApp(){
+
     useEffect(() => {
         if (window.location.hash){
             const {access_token, token_type, expires_in} =
@@ -46,9 +47,9 @@ function WebApp(){
     }
     return (
         <div className="container">
-            <h1>Tes</h1>
-            <button onClick={handleLogin}> L O G I N </button>
-            <Playlist />
+            <h1 className="title">Spotify<span className="dot">.</span></h1>
+            <button className="btn auth" onClick={handleLogin}> Get Spotify Auth </button>
+            <Contents />
         </div>
     )
 }
