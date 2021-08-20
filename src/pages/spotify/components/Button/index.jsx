@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
+import style from './style.module.css'
 
 function Button({value, handleSelect}) {
     return (
-        <button type="submit" onClick={handleSelect}>{value}</button>
+        <button className={style.btn} type="submit" onClick={handleSelect}>{value}</button>
     )
 }
-
 export default Button
