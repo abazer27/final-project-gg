@@ -3,22 +3,26 @@ import axios from 'axios'
 import style from './style.module.css'
 import Button from '../Button';
 import {getReturnedParamsFromSpotifyAuth} from "../../../../components/Auth/auth";
+import {useDispatch, useSelector} from 'react-redux';
+import { storeToken } from '../../../../redux/tokenSlice';
 
 const Contents =() =>{
-    const [token, setToken] = useState('');
+    const token = useSelector(state => state.token.token)
     const [song, setSong] = useState('');
     const [seacrhSong, setSearchSong] = useState([]);
     const [selectSong, setSelectSong] = useState([]);
     const [selectUri, setSelectUri] = useState([]);
     const [userID, setUserID] = useState("");
     const [Create, setCreate] = useState(false);
+    const dispatch = useDispatch();
+
 
     useEffect(()=>{
         if (window.location.hash) {
             const { access_token } = getReturnedParamsFromSpotifyAuth(window.location.hash);
-            setToken(access_token);
+            dispatch(storeToken(access_token));
           }
-        },[]);
+        },);
     useEffect(()=>{
         if(token!== ""){
             getProfile();
