@@ -21,8 +21,4 @@ const getReturnedParamsFromSpotifyAuth = (hash) =>{
 const handleLogin = () =>{
     window.location = `${SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${CLIENT_ID}&response_type=token&redirect_uri=${REDIRECT_URL_AFTER_LOGIN}&scope=${SCOPE_URL_PARAM}&show_dialog=true`;
 }
-
-
-
-
-export {getReturnedParamsFromSpotifyAuth, handleLogin}
+export {handleLogin,getReturnedParamsFromSpotifyAuth}

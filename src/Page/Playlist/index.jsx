@@ -1,39 +1,28 @@
+import React from 'react'
 import { useEffect,useState } from 'react'
-import axios from 'axios'
 import style from './style.module.css'
-import Button from '../Button';
-import {getReturnedParamsFromSpotifyAuth} from "../../../../components/Auth/auth";
-import {useDispatch, useSelector} from 'react-redux';
-import { storeToken } from '../../../../redux/tokenSlice';
+import Button from '../../components/ButtonSelect';
+import { getReturnedParamsFromSpotifyAuth } from '../../components/Auth/auth';
+import {createNewPlaylist, getProfile} from "../../components/Auth/api";
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { storeUser } from '../../redux/userSlice';
+import { storeToken } from '../../redux/tokenSlice';
 
-const Contents =() =>{
-    const token = useSelector(state => state.token.token)
+const CreatePlaylist =() =>{ 
     const [song, setSong] = useState('');
     const [seacrhSong, setSearchSong] = useState([]);
     const [selectSong, setSelectSong] = useState([]);
     const [selectUri, setSelectUri] = useState([]);
-    const [userID, setUserID] = useState("");
     const [Create, setCreate] = useState(false);
-    const dispatch = useDispatch();
+    const token = useSelector(state => state.token.token)
+    const userID = useSelector(state => state.user.user)
 
-
-    useEffect(()=>{
-        if (window.location.hash) {
-            const { access_token } = getReturnedParamsFromSpotifyAuth(window.location.hash);
-            dispatch(storeToken(access_token));
-          }
-        },);
-    useEffect(()=>{
-        if(token!== ""){
-            getProfile();
-        }
-        })
     const handleSong=(e) =>{
         setSong(e.target.value)
     }
-    // https://api.spotify.com/v1/search?query=tania+bowra&offset=0&limit=20&type=artist",
-    const API_URL = `https://api.spotify.com/v1/search?query=${song}&type=track&limit=10`;
     const handleGetSearchSong = () => {
+        const API_URL = `https://api.spotify.com/v1/search?query=${song}&type=track&limit=10`;
         axios.get(API_URL,{
             headers: {Authorization : 'Bearer ' + token,
         },  
@@ -41,8 +30,8 @@ const Contents =() =>{
             .then(res =>res.data)
             .then((resData)=> setSearchSong(resData.tracks.items))
             .catch((err)=> console.log(err));
-
     };
+
     const handleSelect = data =>{
         const uri=data.uri;
         if(selectUri.includes(uri)){
@@ -55,63 +44,22 @@ const Contents =() =>{
             setSelectSong ([data, ...selectSong]);
             setSelectUri ([data.uri, ...selectUri]);
         }
-        
     }
     const handleForm = () => {
         setCreate(!Create);
       };
-    const getProfile = () => {
-        axios.get("https://api.spotify.com/v1/me",{
-            headers:{Authorization: 'Bearer ' +token,
-        },
-        }).then((res) => setUserID(res.data.id))
-    };
-    const handleCreatePlaylist = async e => {
+
+    const handleCreatePlaylist = async (e) => {
         e.preventDefault();
         if (selectSong.length > 0) {
-            createNewPlaylist(e);
+            createNewPlaylist(e, userID, token, selectSong);
             alert("Playlist Created!");
         } else {
             alert("You need songs to make a playlist, choose some!");
         }
     };
-    
-    const createNewPlaylist = async e => {     
-            await fetch(`https://api.spotify.com/v1/users/${userID}/playlists`, {
-                method: "POST",
-                headers: {
-                  Authorization: "Bearer " + token,
-                },
-                body: JSON.stringify({
-                  name: e.target[0].value,
-                  public: false,
-                  collaborative: false,
-                  description: e.target[1].value
-                })
-              })
-                .then(res => res.json())
-                .then(data => storePlaylist(data.id));
-            };
-    
-
-    const storePlaylist = async id =>{
-        const uri = selectSong.map(T => T.uri);
-        await fetch(`https://api.spotify.com/v1/playlists/${id}/tracks?position=0&uris=${uri}`, {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-      body: JSON.stringify({
-        uris: uri,
-        position: 0
-      })
-    })
-      .then(res => res.json())
-      .then(data => console.log(data));
-      
-        setCreate(false);
-        setSelectSong([]);
-        };
+    console.log(token)
+    console.log(userID)
         return  <div>  
                     <input type="text" value={song} onChange={handleSong} placeholder="Search Song ..."></input>
                     <button onClick={handleGetSearchSong}> S E A R C H </button>
@@ -157,4 +105,4 @@ const Contents =() =>{
            
 }
 
-export default Contents
+export default CreatePlaylist
