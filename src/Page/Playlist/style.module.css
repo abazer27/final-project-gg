@@ -10,34 +10,8 @@
     margin-left: 2rem;
 
 }
-.songs {
-    border: 2px solid rgb(39, 82, 0);
-    border-radius: 12px;
-    opacity: 0.5;
-}
-.song{
-    padding: 1rem;
-    color: darkgrey;
-    display: grid;
-    grid-template-columns: 30% 70% ;
-   
-}
-.songs:hover{
-    opacity: 1;
-}
 .description{
     padding: 10px;
-}
-.desc {
-    display: flex;
-    justify-content: space-between;
-}
-.imgWrapper{
-    width: 100px;
-    height: 100px;
-}
-.info{
-    padding-left: 5px;
 }
 .left{
     float: left;
@@ -98,7 +72,4 @@
     padding: 0.5rem 1rem;
     margin: 0.5rem 0;
     letter-spacing: 0.2rem;
-}
-.judul{
-    color: darkgreen;
 }

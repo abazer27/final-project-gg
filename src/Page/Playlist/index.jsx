@@ -1,16 +1,15 @@
 import React from 'react'
 import { useState } from 'react'
 import style from './style.module.css'
-import Button from '../../components/ButtonSelect';
 import {createNewPlaylist} from "../../components/Auth/api";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import TrackList from 'components/Tracklist';
 
 
 const CreatePlaylist =() =>{ 
     const [song, setSong] = useState('');
     const [seacrhSong, setSearchSong] = useState([]);
-    const [selectSong, setSelectSong] = useState([]);
     const [selectUri, setSelectUri] = useState([]);
     const [Create, setCreate] = useState(false);
     const token = useSelector(state => state.token.token)
@@ -30,33 +29,20 @@ const CreatePlaylist =() =>{
             .catch((err)=> console.log(err));
     };
 
-    const handleSelect = data =>{
-        const uri=data.uri;
-        if(selectUri.includes(uri)){
-            const newSelectUri= selectUri.filter (s => s !== uri);
-            const newSelectSong= selectSong.filter (s => s.uri !==uri);
-            setSelectUri(newSelectUri);
-            setSelectSong(newSelectSong);
-        }
-        else{
-            setSelectSong ([data, ...selectSong]);
-            setSelectUri ([data.uri, ...selectUri]);
-        }
-    }
     const handleForm = () => {
         setCreate(!Create);
       };
 
     const handleCreatePlaylist = async (e) => {
         e.preventDefault();
-        if (selectSong.length > 0) {
-            createNewPlaylist(e, userID, token, selectSong);
+        if (selectUri.length > 0) {
+            createNewPlaylist(e, userID, token, selectUri);
             alert("Playlist Created!");
         } else {
             alert("You need songs to make a playlist, choose some!");
         }
     };
-    console.log(seacrhSong)
+    console.log(selectUri)
         return  <div className={style.content}>
                     <h2>Any Song You Like</h2>
                     <div className={style.left}>
@@ -65,7 +51,7 @@ const CreatePlaylist =() =>{
                     </div>  
                     <div>
                         <div>
-                            {selectSong.length > 0 && (
+                            {selectUri.length > 0 && (
                                 <div className={style.right}>
                                     <button onClick={handleForm} className={style.btnCreate}>{Create ? "Cancel" : "Create Playlist"}</button>
                                 </div>
@@ -85,31 +71,12 @@ const CreatePlaylist =() =>{
                                         </form>
                             </div>}
                     </div>
-                            <div className={style.songsWrapper}>{seacrhSong.map((tracks,id)=>{
-                                return(
-                                    <div className={style.songs} key={id}>
-                                        <div className={style.song}>
-                                            <img className={style.imgWrapper} src={tracks.album.images[1].url} alt={tracks.album.name}></img>
-                                            <div>
-                                                <tr className={style.desc}>
-                                                    <td  className={style.judul}>Title</td>
-                                                    <td>{tracks.name}</td>
-                                                </tr>
-                                                <tr className={style.desc}>
-                                                    <td className={style.judul}>Artist</td>
-                                                    <td>{tracks.artists[0].name}</td>
-                                                </tr>
-                                                <tr className={style.desc}>
-                                                    <td  className={style.judul}>Album</td>
-                                                    <td>{tracks.album.name}</td>
-                                                </tr>
-                                            </div>
-                                        </div>
-                                            <Button handleSelect={()=>handleSelect(tracks)} value={selectUri.includes(tracks.uri)? "Deselect" : "Select"}/>
-                                    </div>
-                                )
-                            })}
-
+                    <div className={style.songsWrapper}>
+                        <TrackList
+                            seacrhSong={seacrhSong} 
+                            selectUri={selectUri}
+                            setSelectUri={setSelectUri}
+                        />
                     </div>
                 </div>
         

@@ -1,6 +1,6 @@
 import React from "react";
 import Login from "./Page/Login"
-import  CreatePlaylist  from "./Page/Playlist/index";
+import  CreatePlaylist  from "./Page/Playlist/index.jsx";
 import { Provider } from "react-redux";
 import store from './redux/store'
 import {

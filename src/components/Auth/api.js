@@ -7,8 +7,8 @@ const getProfile = (token) => {
           .then((res) => res.json());
 };
 
-const createNewPlaylist = async (e,userID,token,selectSong) => {   
-    const uri = selectSong.map(T => T.uri);
+const createNewPlaylist = async (e,userID,token,selectUri) => {   
+    const uri = selectUri.map(T => T);
     await fetch(`https://api.spotify.com/v1/users/${userID}/playlists`, {
         method: "POST",
         headers: {

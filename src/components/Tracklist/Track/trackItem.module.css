@@ -1,0 +1,42 @@
+
+.songs {
+    border: 2px solid rgb(39, 82, 0);
+    border-radius: 12px;
+    opacity: 0.5;
+}
+.song{
+    padding: 1rem;
+    color: darkgrey;
+    display: grid;
+    grid-template-columns: 30% 70% ;
+   
+}
+.songs:hover{
+    opacity: 1;
+}
+.description{
+    padding: 10px;
+}
+.desc {
+    display: flex;
+    justify-content: space-between;
+}
+.imgWrapper{
+    width: 100px;
+    height: 100px;
+}
+.judul{
+    color: darkgreen;
+}
+.btn{
+    padding: 10px;
+    margin: 10px;
+    background-color: rgba(54, 189, 27, 0.815);
+    border: 2px green;
+    border-radius: 1rem;
+    letter-spacing: 0.1rem;
+}
+.btnWrapper{
+    text-align: center;
+    
+}
