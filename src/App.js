@@ -9,11 +9,14 @@ import {
   Route,
 } from "react-router-dom";
 import PrivateRoute from './Router/PrivateRoute';
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 function App() {
 
   return (
     <div className="App">
+      <Header />
       <Provider store={store}>
         <Router>
           <Switch>
@@ -28,7 +31,8 @@ function App() {
             </Route>
           </Switch>
         </Router>         
-      </Provider>     
+      </Provider>  
+      <Footer />
     </div>
   );
 }

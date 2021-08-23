@@ -4,7 +4,6 @@ import { Route, Redirect } from "react-router-dom";
 
 const PrivateRoute =({component:Component, ...rest})=>{
     const login = useSelector((state)=>state.token.isAuthenticated)
-    console.log(login)
     return(
         <div>
             <Route 

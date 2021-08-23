@@ -1,0 +1,46 @@
+.title {
+    text-align: right;
+}
+.spotify{
+    color: rgb(8, 185, 8);
+}
+.dev{
+    color: rgb(17, 92, 2);
+}
+.btnAuth{
+    padding: 0.7rem 1.5rem;
+    letter-spacing: 0.1rem;
+    margin: 20px 0 ;
+    color: white;
+    background-color: rgba(32, 179, 32, 0.397);
+    border: none;
+    text-decoration: none;
+    border-radius: 15px;
+}
+.btnAuth:hover{
+    color: black;
+    background-color: rgba(32, 179, 32);
+}
+.left{
+    float: left;
+    margin-top: 3rem;
+    margin-left: 3rem;
+}
+.right{
+    float: right;
+    margin-top: 3rem;
+    margin-right: 3rem;
+}
+.linkTag{
+    display: inline-block;
+    text-decoration: none;
+    color: yellowgreen;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    border: rgb(88, 131, 25) solid 1px;
+    padding: 1rem;
+}
+.linkTag:hover{
+    color: black;
+    background-color: yellowgreen;
+}

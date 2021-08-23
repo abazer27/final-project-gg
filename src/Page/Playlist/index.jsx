@@ -1,13 +1,11 @@
 import React from 'react'
-import { useEffect,useState } from 'react'
+import { useState } from 'react'
 import style from './style.module.css'
 import Button from '../../components/ButtonSelect';
-import { getReturnedParamsFromSpotifyAuth } from '../../components/Auth/auth';
-import {createNewPlaylist, getProfile} from "../../components/Auth/api";
+import {createNewPlaylist} from "../../components/Auth/api";
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { storeUser } from '../../redux/userSlice';
-import { storeToken } from '../../redux/tokenSlice';
+import { useSelector } from 'react-redux';
+
 
 const CreatePlaylist =() =>{ 
     const [song, setSong] = useState('');
@@ -22,7 +20,7 @@ const CreatePlaylist =() =>{
         setSong(e.target.value)
     }
     const handleGetSearchSong = () => {
-        const API_URL = `https://api.spotify.com/v1/search?query=${song}&type=track&limit=10`;
+        const API_URL = `https://api.spotify.com/v1/search?query=${song}&type=track&limit=12`;
         axios.get(API_URL,{
             headers: {Authorization : 'Bearer ' + token,
         },  
@@ -58,41 +56,56 @@ const CreatePlaylist =() =>{
             alert("You need songs to make a playlist, choose some!");
         }
     };
-    console.log(token)
-    console.log(userID)
-        return  <div>  
-                    <input type="text" value={song} onChange={handleSong} placeholder="Search Song ..."></input>
-                    <button onClick={handleGetSearchSong}> S E A R C H </button>
+    console.log(seacrhSong)
+        return  <div className={style.content}>
+                    <h2>Any Song You Like</h2>
+                    <div className={style.left}>
+                        <input className={style.search} type="text" value={song} onChange={handleSong} placeholder="Search Song ..."></input>
+                        <button className={style.btnSearch} onClick={handleGetSearchSong}>Seacrh</button>
+                    </div>  
                     <div>
-                        <div >
+                        <div>
                             {selectSong.length > 0 && (
-                                <div>
-                                    <button onClick={handleForm}>{Create ? "Cancel" : "Create Playlist"}</button>
+                                <div className={style.right}>
+                                    <button onClick={handleForm} className={style.btnCreate}>{Create ? "Cancel" : "Create Playlist"}</button>
                                 </div>
                             ) }
                         </div>
-                        {Create && <div>
+                        {Create && <div className={style.right}>
                                         <form onSubmit={handleCreatePlaylist}>
                                             <div>
-                                                <label htmlFor="title">Title: </label>
-                                                <input name="title" id="title" type="text" placeholder="Title..." minLength="10" />
+                                                <label className={style.label} htmlFor="title">Title</label>
+                                                <input className={style.input} name="title" id="title" type="text" placeholder=". . ." minLength="10" />
                                             </div>
                                             <div>
-                                                <label htmlFor="description">Description: </label>
-                                                <input name="description" id="description" type="text" placeholder="Desc..." minLength="20" />
+                                                <label className={style.label} htmlFor="description">Description</label>
+                                                <input className={style.inputDes} name="description" id="description" type="text" placeholder=". . ." minLength="20" />
                                             </div>
-                                            <button type="submit">Submit</button>
+                                            <button type="submit" className={style.btnSubmit}>Submit</button>
                                         </form>
                             </div>}
                     </div>
-                            <div>{seacrhSong.map((tracks,id)=>{
+                            <div className={style.songsWrapper}>{seacrhSong.map((tracks,id)=>{
                                 return(
-                                    <div className={style.songWrapper} key={id}>
-                                        <img className={style.imgWrapper} src={tracks.album.images[1].url} alt={tracks.album.name}></img>
-                                        <p className={style.description}>{tracks.artists[0].name}</p>
-                                        <p className={style.description}>{tracks.name}</p>
-                                        <p className={style.description}>{tracks.album.name}</p>
-                                        <Button handleSelect={()=>handleSelect(tracks)} value={selectUri.includes(tracks.uri)? "Deselect" : "Select"}/>
+                                    <div className={style.songs} key={id}>
+                                        <div className={style.song}>
+                                            <img className={style.imgWrapper} src={tracks.album.images[1].url} alt={tracks.album.name}></img>
+                                            <div>
+                                                <tr className={style.desc}>
+                                                    <td  className={style.judul}>Title</td>
+                                                    <td>{tracks.name}</td>
+                                                </tr>
+                                                <tr className={style.desc}>
+                                                    <td className={style.judul}>Artist</td>
+                                                    <td>{tracks.artists[0].name}</td>
+                                                </tr>
+                                                <tr className={style.desc}>
+                                                    <td  className={style.judul}>Album</td>
+                                                    <td>{tracks.album.name}</td>
+                                                </tr>
+                                            </div>
+                                        </div>
+                                            <Button handleSelect={()=>handleSelect(tracks)} value={selectUri.includes(tracks.uri)? "Deselect" : "Select"}/>
                                     </div>
                                 )
                             })}

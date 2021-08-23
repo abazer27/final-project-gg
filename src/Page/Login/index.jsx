@@ -7,6 +7,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import { storeToken } from '../../redux/tokenSlice';
 import { storeUser } from '../../redux/userSlice';
 import { getProfile } from '../../components/Auth/api';
+import style from './style.module.css';
 
 function Login() {
     const token = useSelector(state => state.token.token)
@@ -19,11 +20,17 @@ function Login() {
         }
     }, [dispatch,token]);
     return (
-        <div>
-            <h1 className="title">Spotify<span className="dot">.</span></h1>
-            <h2>Halama Login</h2>
-            <button className="btn auth" onClick={handleLogin}> Get Spotify Auth </button>
-            <Link to="/create-playlist"> Create Playlist</Link>
+        <div className={style.contentWrapper}>
+            <div className={style.left}>              
+                    <h2>Find Your New Song Here</h2>
+                    <h3>Music Complete You</h3>
+                <div className={style.btn}>
+                    <button className={style.btnAuth} onClick={handleLogin}> Get Spotify Auth </button>
+                </div>
+            </div>
+            <div className={style.right}>
+                <Link to="/create-playlist" className={style.linkTag}> Create Playlist</Link>
+            </div>
         </div>
     )
 }

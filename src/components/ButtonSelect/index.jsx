@@ -3,7 +3,9 @@ import style from './style.module.css'
 
 function Button({value, handleSelect}) {
     return (
-        <button className={style.btn} type="submit" onClick={handleSelect}>{value}</button>
+        <div className={style.btnWrapper}>
+            <button className={style.btn} type="submit" onClick={handleSelect}>{value}</button>
+        </div>
     )
 }
 export default Button

@@ -1,25 +1,104 @@
-.songWrapper {
-    border: 2px solid rgb(32, 55, 66);
+.content{
+    background-color: rgba(0, 0, 0, 0.699);
+}
+.songsWrapper{
+    display: grid;
+    grid-template-columns: 31% 31% 31% ;
+    grid-gap: 1rem;
+    margin-top: 8rem;
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+
+}
+.songs {
+    border: 2px solid rgb(39, 82, 0);
     border-radius: 12px;
-    padding: 15px;
-    margin: 20px;
-    height: 155px;
-    display: flex;
-    width: 75%;
-    justify-content: space-between;
+    opacity: 0.5;
+}
+.song{
+    padding: 1rem;
+    color: darkgrey;
+    display: grid;
+    grid-template-columns: 30% 70% ;
+   
+}
+.songs:hover{
+    opacity: 1;
 }
 .description{
     padding: 10px;
 }
-.imgWrapper{
-    width: 150px;
-    height: 150px;
-    float: left;
+.desc {
+    display: flex;
+    justify-content: space-between;
 }
-.imgSong{
-    width: 150px;
-    height: 150px;
+.imgWrapper{
+    width: 100px;
+    height: 100px;
 }
 .info{
     padding-left: 5px;
+}
+.left{
+    float: left;
+    margin-top: 2rem;
+    margin-left: 1rem;
+}
+.right{
+    float: right;
+    margin-top: 2rem;
+    margin-right: 3rem;
+}
+.btnCreate{
+    border: none;
+    background-color: rgba(128, 255, 0, 0.5);
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+}
+.btnCreate:hover{
+    background-color: chartreuse;
+}
+.btnSubmit{
+    border: none;
+    background-color: rgba(128, 255, 0, 0.5);
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 0.2rem 0.7rem;
+    border-radius: 1rem;
+    margin: 0.5rem 0;
+}
+.btnSubmit:hover{
+    background-color: chartreuse;
+}
+.label{
+    color: rgb(17, 92, 2);
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+}
+.input{
+    margin-left: 4.4rem;
+}
+.inputDes{
+    margin-left :1rem
+}
+.search{
+    border: none;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+}
+.btnSearch{
+    border: none;
+    background-color: rgba(128, 255, 0, 0.5);
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+    letter-spacing: 0.2rem;
+}
+.judul{
+    color: darkgreen;
 }
