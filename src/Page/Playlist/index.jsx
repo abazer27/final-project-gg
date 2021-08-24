@@ -42,7 +42,6 @@ const CreatePlaylist =() =>{
             alert("You need songs to make a playlist, choose some!");
         }
     };
-    console.log(selectUri)
         return  <div className={style.content}>
                     <h2>Any Song You Like</h2>
                     <div className={style.left}>

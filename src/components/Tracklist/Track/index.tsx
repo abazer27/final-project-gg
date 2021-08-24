@@ -38,23 +38,23 @@ const Track =({tracks, id,setSelectUri,selectUri }: TrackItem)=>{
 
         <div className={style.songs} key={id}>
             <div className={style.song}>
-                <img className={style.imgWrapper} src={tracks.album.images[1].url} alt={tracks.album.name}></img>
+                <img data-testid="imgID" className={style.imgWrapper} src={tracks.album.images[1].url} alt={tracks.album.name}></img>
                 <div>
                     <div className={style.desc}>
                         <p  className={style.judul}>Title</p>
-                        <p>{tracks.name}</p>
+                        <p data-testid="titleID"> {tracks.name}</p>
                     </div>
                     <div className={style.desc}>
                         <p className={style.judul}>Artist</p>
-                        <p>{tracks.artists[0].name}</p>
+                        <p data-testid="artistID">{tracks.artists[0].name}</p>
                     </div>
                     <div className={style.desc}>
                         <p  className={style.judul}>Album</p>
-                        <p>{tracks.album.name}</p>
+                        <p data-testid="albumID">{tracks.album.name}</p>
                     </div>
                 </div>
             </div>
-                <button  className={style.btn} onClick={()=>handleSelect(tracks?.uri)}>{selectUri.includes(tracks.uri)? "Deselect" : "Select"}</button>
+                <button data-testid="btnID" className={style.btn} onClick={()=>handleSelect(tracks?.uri)}>{selectUri.includes(tracks.uri)? "Deselect" : "Select"}</button>
         </div>
     )
 }
