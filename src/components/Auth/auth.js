@@ -1,8 +1,8 @@
-const CLIENT_ID = "e1a4d0707608419f85aa0615e91585c7";
+const CLIENT_ID = "ba4fd03d3ff248909daf9e0aee14d1a4";
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
-const REDIRECT_URL_AFTER_LOGIN = "http://localhost:3000/";
+const REDIRECT_URL_AFTER_LOGIN = "https://generasi-gigih-homework-akbarhazura.vercel.app/";
 const SPACE_DELIMITER = "%20";
-const SCOPE = ["user-read-email","playlist-modify-private"];
+const SCOPE = ["user-read-email","playlist-modify-private","user-read-private","user-library-modify","user-library-read","streaming","user-read-playback-state","user-modify-playback-state"];
 const SCOPE_URL_PARAM = SCOPE.join(SPACE_DELIMITER)
 
 const getReturnedParamsFromSpotifyAuth = (hash) =>{

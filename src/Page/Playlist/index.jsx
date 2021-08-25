@@ -5,6 +5,7 @@ import {createNewPlaylist} from "../../components/Auth/api";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import TrackList from 'components/Tracklist';
+// import Player from 'components/PlaySong';
 
 
 const CreatePlaylist =() =>{ 
@@ -12,9 +13,17 @@ const CreatePlaylist =() =>{
     const [seacrhSong, setSearchSong] = useState([]);
     const [selectUri, setSelectUri] = useState([]);
     const [Create, setCreate] = useState(false);
+    // const [playingTrack, setPlayingTrack] = useState()
     const token = useSelector(state => state.token.token)
     const userID = useSelector(state => state.user.user)
 
+    // const chooseTrack = (tracks) =>{
+    //     setPlayingTrack(tracks);
+    //     setSearchSong('');
+    // }
+    // const handlePlay = (tracks)=>{
+    //     chooseTrack(tracks)
+    // }
     const handleSong=(e) =>{
         setSong(e.target.value)
     }
@@ -77,6 +86,12 @@ const CreatePlaylist =() =>{
                             setSelectUri={setSelectUri}
                         />
                     </div>
+                    {/* <div onClick={handlePlay} className={style.playSong}>
+                        <Player
+                        token={token}
+                        selectUri={playingTrack?.uri}
+                        />
+                    </div> */}
                 </div>
         
 
