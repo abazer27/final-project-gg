@@ -4,7 +4,7 @@ function Header() {
     return (
         <div>
             <div className={style.title}>
-                <h1 className={style.spotify}>Spotify <span className={style.dev}> Dev</span></h1>
+                <h1 className={style.spotify}>Spoti<span className={style.dev}>Dev</span></h1>
             </div>
         </div>
     )

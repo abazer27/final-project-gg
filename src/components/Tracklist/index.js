@@ -1,8 +1,8 @@
 import React from "react";
 import Track from "./Track";
 
-const TrackList = ({ seacrhSong, selectUri, setSelectUri}) => {
-  return seacrhSong.map((tracks, id) => {
+const TrackList = ({ seacrhSong, selectUri, setSelectUri, chooseTrack}) => {
+  return seacrhSong.map((tracks,id) => {
     return (
             <Track
               key={tracks.id}
@@ -10,6 +10,7 @@ const TrackList = ({ seacrhSong, selectUri, setSelectUri}) => {
               id={id}
               selectUri={selectUri}
               setSelectUri={setSelectUri}
+              chooseTrack={chooseTrack}
             />    
     );
   });

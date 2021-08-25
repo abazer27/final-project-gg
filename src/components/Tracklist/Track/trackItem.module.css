@@ -36,6 +36,11 @@
     border-radius: 1rem;
     letter-spacing: 0.1rem;
 }
+.btn:hover{
+    background-color:darkseagreen ;
+    color: rgba(14, 59, 4, 0.815);
+    font-weight: 700;
+}
 .btnWrapper{
     text-align: center;
     

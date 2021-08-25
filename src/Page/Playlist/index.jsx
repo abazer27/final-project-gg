@@ -5,7 +5,7 @@ import {createNewPlaylist} from "../../components/Auth/api";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import TrackList from 'components/Tracklist';
-// import Player from 'components/PlaySong';
+import Player from 'components/PlaySong';
 
 
 const CreatePlaylist =() =>{ 
@@ -13,17 +13,10 @@ const CreatePlaylist =() =>{
     const [seacrhSong, setSearchSong] = useState([]);
     const [selectUri, setSelectUri] = useState([]);
     const [Create, setCreate] = useState(false);
-    // const [playingTrack, setPlayingTrack] = useState()
+    const [playingTrack, setPlayingTrack] = useState()
     const token = useSelector(state => state.token.token)
     const userID = useSelector(state => state.user.user)
 
-    // const chooseTrack = (tracks) =>{
-    //     setPlayingTrack(tracks);
-    //     setSearchSong('');
-    // }
-    // const handlePlay = (tracks)=>{
-    //     chooseTrack(tracks)
-    // }
     const handleSong=(e) =>{
         setSong(e.target.value)
     }
@@ -41,7 +34,12 @@ const CreatePlaylist =() =>{
     const handleForm = () => {
         setCreate(!Create);
       };
-
+    
+    const chooseTrack = (tracks) =>{
+        setPlayingTrack(tracks);
+        setSearchSong([]);
+    }
+    
     const handleCreatePlaylist = async (e) => {
         e.preventDefault();
         if (selectUri.length > 0) {
@@ -84,14 +82,15 @@ const CreatePlaylist =() =>{
                             seacrhSong={seacrhSong} 
                             selectUri={selectUri}
                             setSelectUri={setSelectUri}
+                            chooseTrack={chooseTrack}
                         />
                     </div>
-                    {/* <div onClick={handlePlay} className={style.playSong}>
-                        <Player
-                        token={token}
-                        selectUri={playingTrack?.uri}
-                        />
-                    </div> */}
+                    <div className={style.playSong}>
+                            <Player
+                            token={token}
+                            trackUri={playingTrack?.uri}
+                            />
+                    </div>
                 </div>
         
 

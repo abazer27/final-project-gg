@@ -21,9 +21,10 @@ type TrackItem = {
     id: string;
     selectUri: Array<string>;
     setSelectUri: (query: string[]) => void;
+    chooseTrack: (query: {}) => void;
   };
 
-const Track =({tracks, id,setSelectUri,selectUri }: TrackItem)=>{
+const Track =({tracks, id,setSelectUri,selectUri,chooseTrack }: TrackItem)=>{
     const handleSelect = (id:string) =>{
         const uri:string=id;
         if(selectUri.includes(uri)){
@@ -34,10 +35,13 @@ const Track =({tracks, id,setSelectUri,selectUri }: TrackItem)=>{
             setSelectUri ([...selectUri, uri]);
         }
     };
+    const handlePlay =() =>{
+      chooseTrack(tracks)
+    }
     return (
 
         <div className={style.songs} key={id}>
-            <div className={style.song}>
+            <div className={style.song} onDoubleClick={handlePlay}>
                 <img data-testid="imgID" className={style.imgWrapper} src={tracks.album.images[1].url} alt={tracks.album.name}></img>
                 <div>
                     <div className={style.desc}>
